@@ -34,8 +34,8 @@ jobs:
 
       - name: Determine Branches
         run: |
-          SOURCE_BRANCH="${{ env.GITHUB_SOURCE_BRANCH || github.ref_name }}"
-          TARGET_BRANCH="${{ env.GITLAB_TARGET_BRANCH || 'main' }}" # Default to main, can be overridden
+          SOURCE_BRANCH="${{ env.SOURCE_BRANCH || github.ref_name }}"
+          TARGET_BRANCH="${{ env.TARGET_BRANCH || 'main' }}" # Default to main, can be overridden
           SYNC_BRANCH="sync-staging" #  New:  Define the staging branch in GitLab
           echo "Source Branch: $SOURCE_BRANCH"
           echo "Target Branch: $TARGET_BRANCH"
