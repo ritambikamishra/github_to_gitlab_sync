@@ -26,7 +26,7 @@ jobs:
       - name: Add GitLab Remote
         env:
           GITLAB_PRIVATE_TOKEN: ${{ secrets.GITLAB_PRIVATE_TOKEN }}
-          GITLAB_REPO_URL: 'https://oauth2:${{ secrets.GITLAB_PRIVATE_TOKEN }}@gitlab.com/ritambikamishra-group/ritambikamishra-project.git'
+          GITLAB_REPO_URL: 'https://oauth2:${{ secrets.GITLAB_PRIVATE_TOKEN }}@gitlab.com/ritambikamishra-group/gitlab_sync_test.git'
         run: git remote add gitlab "$GITLAB_REPO_URL"
 
       - name: Fetch from GitLab
@@ -48,7 +48,7 @@ jobs:
       - name: Create or Reset Sync Branch in GitLab
         env:
           GITLAB_PRIVATE_TOKEN: ${{ secrets.GITLAB_PRIVATE_TOKEN }}
-          GITLAB_REPO_URL: 'https://oauth2:${{ secrets.GITLAB_PRIVATE_TOKEN }}@gitlab.com/ritambikamishra-group/ritambikamishra-project.git'
+          GITLAB_REPO_URL: 'https://oauth2:${{ secrets.GITLAB_PRIVATE_TOKEN }}@gitlab.com/ritambikamishra-group/gitlab_sync_test.git'
         run: |
           SOURCE_BRANCH="${{ steps.branch_vars.outputs.source_branch }}"
           TARGET_BRANCH="${{ steps.branch_vars.outputs.target_branch }}"
@@ -63,7 +63,7 @@ jobs:
       - name: Attempt Merge and Push to GitLab Target
         env:
           GITLAB_PRIVATE_TOKEN: ${{ secrets.GITLAB_PRIVATE_TOKEN }}
-          GITLAB_REPO_URL: 'https://oauth2:${{ secrets.GITLAB_PRIVATE_TOKEN }}@gitlab.com/ritambikamishra-group/ritambikamishra-project.git'
+          GITLAB_REPO_URL: 'https://oauth2:${{ secrets.GITLAB_PRIVATE_TOKEN }}@gitlab.com/ritambikamishra-group/gitlab_sync_test.git'
         run: |
           SOURCE_BRANCH="${{ steps.branch_vars.outputs.source_branch }}"
           TARGET_BRANCH="${{ steps.branch_vars.outputs.target_branch }}"
@@ -75,5 +75,5 @@ jobs:
       - name: Push Tags to GitLab
         env:
           GITLAB_PRIVATE_TOKEN: ${{ secrets.GITLAB_PRIVATE_TOKEN }}
-          GITLAB_REPO_URL: 'https://oauth2:${{ secrets.GITLAB_PRIVATE_TOKEN }}@gitlab.com/ritambikamishra-group/ritambikamishra-project.git'
+          GITLAB_REPO_URL: 'https://oauth2:${{ secrets.GITLAB_PRIVATE_TOKEN }}@gitlab.com/ritambikamishra-group/gitlab_sync_test.git'
         run: git push --tags gitlab
